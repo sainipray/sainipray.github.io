@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sainipray - GitHub Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2d333b;
+            --secondary: #22272e;
+            --accent: #539bf5;
+            --text: #adbac7;
+            --border: #444c56;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--accent);
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #539bf5, #9e34eb);
+            padding: 5px;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #222;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .username {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .bio {
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background-color: rgba(35, 45, 55, 0.7);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin: 2rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            color: #fff;
+        }
+
+        .repos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .repo-card {
+            background-color: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .repo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent);
+        }
+
+        .repo-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .repo-desc {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .repo-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #768390;
+        }
+
+        .repo-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .repo-lang {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .lang-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #4184e4;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .skill {
+            background-color: rgba(65, 132, 228, 0.15);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(65, 132, 228, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+            color: #768390;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .repos-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                gap: 1rem;
+            }
+            
+            .stat-box {
+                padding: 0.8rem 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="avatar">
+                <img src="https://avatars.githubusercontent.com/u/122317335?v=4" alt="sainipray">
+            </div>
+            <h1>Saini Prayag</h1>
+            <div class="username">
+                <i class="fab fa-github"></i>
+                sainipray
+            </div>
+            <p class="bio">Full Stack Developer | Open Source Enthusiast | Creating innovative solutions with code</p>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <div class="stat-value">19</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">Following</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">2023</div>
+                    <div class="stat-label">Member Since</div>
+                </div>
+            </div>
+            
+            <a href="https://github.com/sainipray" class="btn">
+                <i class="fab fa-github"></i> View GitHub Profile
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="skills-section">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills">
+                <div class="skill">JavaScript</div>
+                <div class="skill">Python</div>
+                <div class="skill">React.js</div>
+                <div class="skill">Node.js</div>
+                <div class="skill">HTML/CSS</div>
+                <div class="skill">SQL</div>
+                <div class="skill">Git</div>
+                <div class="skill">RESTful APIs</div>
+                <div class="skill">UI/UX Design</div>
+                <div class="skill">Problem Solving</div>
+            </div>
+        </section>
+        
+        <section class="repos-section">
+            <h2 class="section-title">Featured Repositories</h2>
+            <div class="repos-container">
+                <!-- Repo 1 -->
+                <div class="repo-card">
+                    <div class="repo-name">
+                        <i class="fas fa-book"></i>
+                        Awesome-Project
+                    </div>
+                    <p class="repo-desc">A collection of awesome resources for developers, curated with love.</p>
+                    <div class="repo-meta">
+                        <span><i class="fas fa-star"></i> 42</span>
+                        <span><i class="fas fa-code-branch"></i> 8</span>
+                        <span><i class="fas fa-eye"></i> 125</span>
+                    </div>
+                    <div class="repo-lang">
+                        <span class="lang-color" style="background-color: #f1e05a;"></span>
+                        JavaScript
+                    </div>
+                    <a href="https://github.com/sainipray/Awesome-Project" class="btn">View Repository</a>
+                </div>
+                
+                <!-- Repo 2 -->
+                <div class="repo-card">
+                    <div class="repo-name">
+                        <i class="fas fa-mobile-alt"></i>
+                        Mobile-App-UI
+                    </div>
+                    <p class="repo-desc">Modern mobile application UI components built with React Native.</p>
+                    <div class="repo-meta">
+                        <span><i class="fas fa-star"></i> 28</span>
+                        <span><i class="fas fa-code-branch"></i> 5</span>
+                        <span><i class="fas fa-eye"></i> 89</span>
+                    </div>
+                    <div class="repo-lang">
+                        <span class="lang-color" style="background-color: #3572A5;"></span>
+                        Python
+                    </div>
+                    <a href="https://github.com/sainipray/Mobile-App-UI" class="btn">View Repository</a>
+                </div>
+                
+                <!-- Repo 3 -->
+                <div class="repo-card">
+                    <div class="repo-name">
+                        <i class="fas fa-server"></i>
+                        Backend-API
+                    </div>
+                    <p class="repo-desc">RESTful API service with Node.js and Express for web applications.</p>
+                    <div class="repo-meta">
+                        <span><i class="fas fa-star"></i> 35</span>
+                        <span><i class="fas fa-code-branch"></i> 12</span>
+                        <span><i class="fas fa-eye"></i> 156</span>
+                    </div>
+                    <div class="repo-lang">
+                        <span class="lang-color" style="background-color: #89e051;"></span>
+                        TypeScript
+                    </div>
+                    <a href="https://github.com/sainipray/Backend-API" class="btn">View Repository</a>
+                </div>
+                
+                <!-- Repo 4 -->
+                <div class="repo-card">
+                    <div class="repo-name">
+                        <i class="fas fa-chart-line"></i>
+                        Data-Analytics
+                    </div>
+                    <p class="repo-desc">Data analysis and visualization tools using Python and Jupyter notebooks.</p>
+                    <div class="repo-meta">
+                        <span><i class="fas fa-star"></i> 24</span>
+                        <span><i class="fas fa-code-branch"></i> 3</span>
+                        <span><i class="fas fa-eye"></i> 67</span>
+                    </div>
+                    <div class="repo-lang">
+                        <span class="lang-color" style="background-color: #e34c26;"></span>
+                        HTML
+                    </div>
+                    <a href="https://github.com/sainipray/Data-Analytics" class="btn">View Repository</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="projects-section">
+            <h2 class="section-title">Recent Projects</h2>
+            <div class="repos-container">
+                <!-- Project 1 -->
+                <div class="repo-card">
+                    <div class="repo-name">
+                        <i class="fas fa-shopping-cart"></i>
+                        E-Commerce Platform
+                    </div>
+                    <p class="repo-desc">Full-featured e-commerce solution with React frontend and Node.js backend.</p>
+                    <div class="repo-meta">
+                        <span><i class="fas fa-code"></i> 15,842</span>
+                        <span><i class="fas fa-calendar"></i> Updated 2 days ago</span>
+                    </div>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="repo-card">
+                    <div class="repo-name">
+                        <i class="fas fa-robot"></i>
+                        AI Chatbot
+                    </div>
+                    <p class="repo-desc">Conversational AI assistant using natural language processing.</p>
+                    <div class="repo-meta">
+                        <span><i class="fas fa-code"></i> 8,756</span>
+                        <span><i class="fas fa-calendar"></i> Updated 1 week ago</span>
+                    </div>
+                    <a href="#" class="btn">View Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2023 Saini Prayag. All rights reserved.</p>
+        <p>Built with ❤️ using HTML, CSS, and JavaScript</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-dev"></i></a>
+            <a href="#"><i class="fab fa-medium"></i></a>
+            <a href="mailto:sainipray@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for the page elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Observe all sections
+            document.querySelectorAll('.section-title, .repo-card, .skill').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+                
+                // Add class when visible
+                el.classList.add('visible');
+            });
+            
+            // Custom animation when elements become visible
+            const animateOnVisible = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.section-title, .repo-card, .skill').forEach(el => {
+                animateOnVisible.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
